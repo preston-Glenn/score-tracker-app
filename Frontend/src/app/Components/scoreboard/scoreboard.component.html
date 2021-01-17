@@ -1,0 +1,16 @@
+<div class = 'main-container'>
+  <div class = "sb-name-container">
+    <h1 class="sb-name">{{sbName}}</h1>
+  </div>
+
+  <div *ngFor="let pair of sbPairs | slice:0:4; let i=index" class="sb-usersScore">
+    <div class="pairs">
+      <div class="user-name user-text"> {{pair.username}}</div>
+      <div class="user-score user-text"> {{pair.userscore}} </div>
+    </div>
+  </div>
+  <div *ngIf="sbPairs.length > 4" class="dotdotdot">
+    ...<!-- put image here -->
+  </div>
+
+</div>

@@ -1,0 +1,17 @@
+<div class = 'main-container'>
+  <div class = "sb-name-container">
+    <h1 *ngIf="scoreboard" class="sb-name">{{scoreboard.scoreboardName}} </h1>
+  </div>
+
+  <div *ngIf="scoreboard">
+    <div  *ngFor="let pair of scoreboard.userScores ; let i=index" class="sb-usersScore">
+      <div class="pairs">
+        <div class="user-name user-text"> {{pair.username}}</div>
+        <div class="user-score user-text"> {{pair.userscore}} </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="text" [formControl]="usernameControl" required (keyup.enter)="addUser()" id="name" name="name">
+  <button (click)="addUser()"> Add User</button>
+</div>

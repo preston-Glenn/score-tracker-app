@@ -1,0 +1,70 @@
+{
+  "scoreboards": [
+    {
+      "userScores":[{
+        "userIDs": 1,
+        "username": "user1",
+        "userscore": 5
+        },
+        {
+          "userIDs": 2,
+          "username": "user2",
+          "userscore": 3
+          }
+      ],
+      "scoreboardName": "Test 1"
+    },
+    {
+      "userScores":[{
+        "userIDs": 1,
+        "username": "user1",
+        "userscore": 5
+        },
+        {
+          "userIDs": 2,
+          "username": "user2",
+          "userscore": 3
+          }
+      ],
+      "scoreboardName": "Test 1"
+    },
+    {
+      "userScores":[{
+        "userIDs": 1,
+        "username": "user1",
+        "userscore": 5
+        },
+        {
+          "userIDs": 2,
+          "username": "user2",
+          "userscore": 3
+          }
+      ],
+      "scoreboardName": "Test 1"
+    },
+    {
+      "userScores":[{
+        "userIDs": 3,
+        "username": "user3",
+        "userscore": 3
+        },
+        {
+          "userIDs": 4,
+          "username": "user4",
+          "userscore": 4
+          },
+          {
+            "userIDs": 3,
+            "username": "user3",
+            "userscore": 3
+            },
+            {
+              "userIDs": 4,
+              "username": "user4",
+              "userscore": 4
+              }
+      ],
+      "scoreboardName": "Test 2"
+    }
+  ]
+}

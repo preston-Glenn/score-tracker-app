@@ -8,13 +8,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ScoreboardComponent } from './Components/scoreboard/scoreboard.component';
 import { ScoreboardPageComponent } from './Pages/scoreboard-page/scoreboard-page.component'
 import { HttpClientModule } from '@angular/common/http';
+import { LoginPageComponent } from './Pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     ScoreboardComponent,
-    ScoreboardPageComponent
+    ScoreboardPageComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

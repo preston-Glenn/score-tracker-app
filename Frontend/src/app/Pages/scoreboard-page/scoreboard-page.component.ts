@@ -32,11 +32,11 @@ async ngOnInit() {
 
  await axios.get('http://localhost:5000/scoreboards/ss/'+this.sb_id).then((response) => {
     this.scoreboard = response.data
-  })
+  }).catch(err => console.log(err))
 
  await axios.get('http://localhost:5000/users/id/'+this.user_id).then((response) => {
     this.user = response.data
-  })
+  }).catch(err => console.log(err))
 }
 
 async addUser(){
@@ -48,8 +48,19 @@ async addUser(){
 
     await axios.post('http://localhost:5000/users/addUserToScoreboard/'+this.sb_id,{username:username}).then((response) => {
     this.scoreboard = response.data
+    console.log(this.scoreboard)
+  }).catch(err => {
+    alert("Something went wrong. Please make sure that user isn't already on the scoreboard.")
+    console.log(err)
   })
   }
 }
 
+async add(pair:any){
+console.log(pair)
+}
+
+async subtract(pair:any){
+  console.log(pair)
+  }
 }

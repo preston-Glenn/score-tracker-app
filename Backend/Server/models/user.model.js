@@ -10,7 +10,6 @@ const userSchema = new schema({
     required: true,
     unique: true,
     trim: true,
-    minlength: 3,
     index: true
   },
   scorboards_ID: {

@@ -27,16 +27,29 @@ router.route('/add/:username').post((req, res) => {
 
 router.route('/addUserToScoreboard/:sb_id').post(async (req, res) => {
   const sb_id = req.params.sb_id;
-  const user = await User.find({username:req.body.username})
+  const user = await User.findOne({username:req.body.username})
 
 
-  if(user.length > 0){
+  if(user){
     const  userScore = {
         userIDs: user._id,
         username: req.body.username,
         userscore: 0
       }
 
+      //get scoreboard
+      //check if username is in pairs if so return the scoreboard
+      const foundSB = await Scoreboard.findById(sb_id)
+      
+      
+      const userScores = foundSB.userScores
+      if(userScores.filter(obj =>{
+        return obj.username === req.body.username
+      }).length > 0){
+        res.status("402").json("Error User already Exists")
+        return 0;
+      }
+      
     //add userScore to scoreboard
     await Scoreboard.updateOne({_id:sb_id},{ $push: { userScores: userScore } })
     Scoreboard.findById(sb_id).then(response => res.json(response))
@@ -49,7 +62,7 @@ router.route('/addUserToScoreboard/:sb_id').post(async (req, res) => {
 
     const username = req.body.username;
     const newUser = new User({username: username});
-    console.log("else1")
+
     await newUser.save()
     .then(response => {
       userScore = {
@@ -57,16 +70,18 @@ router.route('/addUserToScoreboard/:sb_id').post(async (req, res) => {
         username: req.body.username,
         userscore: 0
       };
-      console.log("else2")
-    }).then(User.updateOne({username:req.body.username},{ $push: { scorboards_ID: sb_id } }))
+
+    })
+    await User.updateOne({username:req.body.username},{ $push: { scorboards_ID: sb_id } })
     .catch(err => {
       console.log(err)
       res.json('Error: ' + err)
       return
     });
     
-    await Scoreboard.updateOne({_id:sb_id},{ $push: { userScores: userScore } }).then( response => res.json(response) )
-
+    await Scoreboard.updateOne({_id:sb_id},{ $push: { userScores: userScore } })
+    
+    Scoreboard.findById(sb_id).then(response => res.json(response))
 }
 
 

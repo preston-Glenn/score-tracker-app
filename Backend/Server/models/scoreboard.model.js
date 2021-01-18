@@ -8,12 +8,11 @@ const scoreboardSchema = new schema({
     type: String,
     required: true,
     trim: true,
-    minlength: 3,
     index: true
   },
   userScores: {
     type: [{
-      userIDs: String,
+      userIDs: schema.Types.ObjectId,
       username: String,
       userscore: Number
     }],

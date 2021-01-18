@@ -48,16 +48,16 @@ router.route('/:user_id').get(async(req, res) => {
 });
 
 
-router.route('/new').post((req, res) => {
+router.route('/new').post( async (req, res) => {
   const scoreboardName = req.body.scoreboardName;
   const username = req.body.username;
-  var id = User.findOne({username: username})._id
+  var id = await User.findOne({username: username})
 
   const newScoreboard = new Scoreboard({
     scoreboardName:scoreboardName,
     userScores: [
       {
-        userIDs: id,
+        userIDs: id._id,
         username: username,
         userscore: 0
       }

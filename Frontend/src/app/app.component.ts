@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,11 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'score-keeper';
 
+  constructor( private router: Router ) { }
 
+  route(){
+    this.router.navigate(['/login']);
 
+  }
 
 }

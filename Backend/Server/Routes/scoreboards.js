@@ -26,9 +26,20 @@ router.route('/ss/:id').get((req, res) => {
 //     .catch(err => res.json('Error: ' + err));
 // });
 
-router.route('/:id').patch((req, res) => {
-  console.log("router.route('/:id').patch((req, res)")
-  Scoreboard.findByIdAndUpdate(req.params.id).catch(err => res.json('Error: ' + err));
+router.route('/:id').patch(async(req, res) => {
+  console.log("called")
+  await Scoreboard.updateOne({_id:req.params.id},req.body.scoreboard)
+      .catch(err => {
+        res.status(400).json('Error: ' + err)
+        console.log(err)
+      });
+  await Scoreboard.findById(req.params.id).then(response => res.json(response))
+      .catch(err => {
+        res.status(400).json('Error: ' + err)
+        console.log(err)
+        return
+      })
+      
 });
 
 

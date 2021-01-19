@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { user } from 'src/app/Models/user';
 
 @Component({
   selector: 'app-login-page',
@@ -9,14 +12,23 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, public http: HttpClient ) { }
+  username: String
+  usernameControl = new FormControl('');
+
+  constructor(private route: ActivatedRoute, private router: Router ) { }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe( params => {
-      this.sb_id = params.get('sb_id')
-      this.user_id = params.get('user_id')
 
-      });
+  }
+
+  async next(){
+    if(this.usernameControl.value === ""){
+      alert("Please Enter a Username")
+    } else {
+      this.username = this.usernameControl.value
+      this.usernameControl.setValue("")
+      this.router.navigate(['/home', { username: this.username}]);
+    }
 
   }
 

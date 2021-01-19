@@ -1,1 +1,5 @@
-<p>login-page works!</p>
+<div class = "username-input ">
+  <h1>Please Enter Username</h1>
+  <input type="text" [formControl]="usernameControl" required (keyup.enter)="next()">
+</div>
+

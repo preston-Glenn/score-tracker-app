@@ -6,15 +6,19 @@
   <div *ngIf="scoreboard">
     <div  *ngFor="let pair of scoreboard.userScores ; let i=index" class="sb-usersScore">
       <div class="pairs">
-        <div class="user-name user-text"> {{pair.username}}</div>
-        <button (click)="add(pair)" class = "small-square">-</button>
-        <div class="user-score user-text"> {{pair.userscore}} </div>
-        <button (click)="subtract(pair)" class = "small-square">+</button>
+        <div >
+          <div class="user-name user-text"> {{pair.username}}</div>
 
+          <div class="user-score user-text"> {{pair.userscore}} </div>
+          <button (click)="add(pair)" class = "small-square">+</button>
+          <button (click)="subtract(pair)" class = "small-square">-</button>
+        </div>
       </div>
     </div>
   </div>
+<div style=" margin-top: 16px;">
+  <input style="float: right;" type="text" [formControl]="usernameControl" required (keyup.enter)="addUser()" id="name" name="name">
+  <button  style="float: right;" (click)="addUser()"> Add User</button>
+</div>
 
-  <input type="text" [formControl]="usernameControl" required (keyup.enter)="addUser()" id="name" name="name">
-  <button (click)="addUser()"> Add User</button>
 </div>

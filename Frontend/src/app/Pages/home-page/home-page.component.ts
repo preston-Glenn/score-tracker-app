@@ -24,18 +24,14 @@ export class HomePageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-
+    this.route.paramMap.subscribe( params => {
+      this.username = params.get('username')
+      });
+    this.getUserInfo()
 
   }
 
-  async next(){
-    if(this.usernameControl.value === ""){
-      alert("Please Enter a Username")
-    } else {
-      this.username = this.usernameControl.value
-      this.usernameControl.setValue("")
-
-
+  async getUserInfo(){
 
       // if username exists SB.findById()
       // else create user
@@ -71,7 +67,7 @@ export class HomePageComponent implements OnInit {
       })} else {
         this.scoreboards = []
       }
-    }
+
 
   }
 

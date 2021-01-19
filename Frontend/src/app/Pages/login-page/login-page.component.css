@@ -1,0 +1,24 @@
+input {
+  outline: none;
+  border-radius: 5px;
+  padding: 15px;
+  border: 1px solid;
+}
+
+input:hover{
+  padding-bottom: 12px;
+  outline: none;
+  border-bottom: 4px solid black;
+}
+
+input:focus{
+  padding-bottom: 12px;
+  outline: none;
+  border-bottom: 4px solid black;
+}
+
+.username-input{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}

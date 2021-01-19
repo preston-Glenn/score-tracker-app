@@ -57,10 +57,32 @@ async addUser(){
 }
 
 async add(pair:any){
-console.log(pair)
+  let sb = JSON.parse(JSON.stringify(this.scoreboard))
+  const i = sb.userScores.findIndex(ele => {return ele.username === pair.username})
+  sb.userScores[i].userscore = this.scoreboard.userScores[i].userscore+1
+  await axios.patch('http://localhost:5000/scoreboards/'+this.sb_id,{scoreboard:sb}).then(res =>{
+    // this.scoreboard = res.data
+    this.scoreboard = res.data
+  })
+
 }
 
-async subtract(pair:any){
-  console.log(pair)
+  async subtract(pair:any){
+    if(pair.userscore > 0){
+      let sb = JSON.parse(JSON.stringify(this.scoreboard))
+      const i = sb.userScores.findIndex(ele => {return ele.username === pair.username})
+      sb.userScores[i].userscore = this.scoreboard.userScores[i].userscore-1
+      await axios.patch('http://localhost:5000/scoreboards/'+this.sb_id,{scoreboard:sb}).then(res =>{
+        // this.scoreboard = res.data
+        this.scoreboard = res.data
+      })
+    } else {
+      alert("Your score must be greater than zero")
+    }
   }
+
+
+
+
+
 }

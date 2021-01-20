@@ -35,7 +35,7 @@ export class HomePageComponent implements OnInit {
 
       // if username exists SB.findById()
       // else create user
-      await axios.get('http://localhost:5000/users/'+this.username)
+      await axios.get('https://score-tracker-api.herokuapp.com/users/'+this.username)
       .then(response => {
          this.user = response.data
       })
@@ -45,7 +45,7 @@ export class HomePageComponent implements OnInit {
 
       if(this.user == null){
 
-        await axios.post('http://localhost:5000/users/add/'+this.username)
+        await axios.post('https://score-tracker-api.herokuapp.com/users/add/'+this.username)
       .then(response => {
          this.user = response.data
       })
@@ -58,7 +58,7 @@ export class HomePageComponent implements OnInit {
       }
 
       if(this.user.scorboards_ID){
-      await axios.get('http://localhost:5000/scoreboards/'+this.user._id)
+      await axios.get('https://score-tracker-api.herokuapp.com/scoreboards/'+this.user._id)
       .then(response => {
         this.scoreboards  = response.data
       })
@@ -85,7 +85,7 @@ export class HomePageComponent implements OnInit {
       this.SB_name = this.newScoreBoardControl.value
       this.newScoreBoardControl.setValue("")
       let sb_id = ""
-      await axios.post('http://localhost:5000/scoreboards/new',{scoreboardName:this.SB_name,username:this.username})
+      await axios.post('https://score-tracker-api.herokuapp.com/scoreboards/new',{scoreboardName:this.SB_name,username:this.username})
       .then(res => {
         sb_id = res.data._id
       }).catch(function (error) {

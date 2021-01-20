@@ -30,11 +30,11 @@ async ngOnInit() {
 
     });
 
- await axios.get('http://localhost:5000/scoreboards/ss/'+this.sb_id).then((response) => {
+ await axios.get('https://score-tracker-api.herokuapp.com/scoreboards/ss/'+this.sb_id).then((response) => {
     this.scoreboard = response.data
   }).catch(err => console.log(err))
 
- await axios.get('http://localhost:5000/users/id/'+this.user_id).then((response) => {
+ await axios.get('https://score-tracker-api.herokuapp.com/users/id/'+this.user_id).then((response) => {
     this.user = response.data
   }).catch(err => console.log(err))
 }
@@ -46,7 +46,7 @@ async addUser(){
     const username = this.usernameControl.value
     this.usernameControl.setValue("")
 
-    await axios.post('http://localhost:5000/users/addUserToScoreboard/'+this.sb_id,{username:username}).then((response) => {
+    await axios.post('https://score-tracker-api.herokuapp.com/users/addUserToScoreboard/'+this.sb_id,{username:username}).then((response) => {
     this.scoreboard = response.data
     console.log(this.scoreboard)
   }).catch(err => {
@@ -60,7 +60,7 @@ async add(pair:any){
   let sb = JSON.parse(JSON.stringify(this.scoreboard))
   const i = sb.userScores.findIndex(ele => {return ele.username === pair.username})
   sb.userScores[i].userscore = this.scoreboard.userScores[i].userscore+1
-  await axios.patch('http://localhost:5000/scoreboards/'+this.sb_id,{scoreboard:sb}).then(res =>{
+  await axios.patch('https://score-tracker-api.herokuapp.com/scoreboards/'+this.sb_id,{scoreboard:sb}).then(res =>{
     // this.scoreboard = res.data
     this.scoreboard = res.data
   })
@@ -72,7 +72,7 @@ async add(pair:any){
       let sb = JSON.parse(JSON.stringify(this.scoreboard))
       const i = sb.userScores.findIndex(ele => {return ele.username === pair.username})
       sb.userScores[i].userscore = this.scoreboard.userScores[i].userscore-1
-      await axios.patch('http://localhost:5000/scoreboards/'+this.sb_id,{scoreboard:sb}).then(res =>{
+      await axios.patch('https://score-tracker-api.herokuapp.com/scoreboards/'+this.sb_id,{scoreboard:sb}).then(res =>{
         // this.scoreboard = res.data
         this.scoreboard = res.data
       })

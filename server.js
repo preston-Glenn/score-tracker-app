@@ -25,7 +25,7 @@ connection.once('open',()=>{
 })
 
 const scoreboardRouter = require('./Routes/scoreboards');
-const usersRouter = require('./routes/users');
+const usersRouter = require('./Routes/users');
 
 app.use('/scoreboards', scoreboardRouter);
 app.use('/users', usersRouter);

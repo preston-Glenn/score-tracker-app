@@ -11,7 +11,7 @@ const app = express()
 app.use(cors()) 
 app.use(express.json())
 
-const uri = process.env.ATLAS_URI
+const uri = process.env.MONGODB_URI
 
 
 mongoose.set('useFindAndModify', false);
